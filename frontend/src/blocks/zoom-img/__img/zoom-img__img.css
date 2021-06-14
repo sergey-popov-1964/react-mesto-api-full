@@ -1,0 +1,7 @@
+.zoom-img__img {
+  display: block;
+  margin: 0;
+  max-width: 75vw;
+  max-height: 75vh;
+  z-index: 10;
+}

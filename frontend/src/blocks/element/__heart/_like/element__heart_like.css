@@ -1,0 +1,7 @@
+.element__heart_like {
+  background: url('../../../../images/mesto_heart_like.svg') no-repeat center center / cover;
+}
+
+.element__heart_like:hover {
+  opacity: 1;
+}

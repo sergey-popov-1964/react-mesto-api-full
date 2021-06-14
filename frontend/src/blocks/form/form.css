@@ -1,0 +1,19 @@
+.form {
+  max-width: 430px;
+  margin: 0;
+  padding: 34px 36px 36px 36px;
+  position: relative;
+  z-index: 100;
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media screen and (max-width: 618px) {
+  .form {
+    max-width: 282px;
+    padding: 25px 22px;
+  }
+}

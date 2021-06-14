@@ -1,0 +1,29 @@
+.profile__button-edit {
+  background-image: url('../../../images/mesto_pen.svg');
+  background-position: center;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 6px 0;
+  outline: none;
+  border: solid 1px #ffffff;
+  font-family: inherit;
+  width: 24px;
+  height: 24px;
+  background-color: #000000;
+  align-self: end;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.profile__button-edit:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 618px) {
+  .profile__button-edit {
+    width: 18px;
+    height: 18px;
+    background-size: 7px 7px;
+  }
+}

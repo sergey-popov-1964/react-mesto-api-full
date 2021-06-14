@@ -1,0 +1,21 @@
+.element__heart {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  align-self: end;
+  cursor: pointer;
+  background: url('../../../images/mesto_heart.svg') no-repeat center center / cover;
+  width: 20px;
+  height: 18px;
+}
+
+.element__heart:hover {
+  opacity: .5;
+  transition: all .5s ease;
+}
+
+.element__heart:active {
+  background: url('../../../images/mesto_heart_like.svg') no-repeat center center / cover;
+  opacity: 1;
+}

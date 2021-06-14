@@ -1,0 +1,8 @@
+.header__reg {
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+}

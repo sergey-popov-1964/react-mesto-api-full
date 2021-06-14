@@ -1,0 +1,19 @@
+.form__input {
+  font-family: 'Inter', 'Arial', sans-serif;
+  padding: 5px 0 10px;
+  margin: 20px 0 28px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.form__input:last-of-type {
+  margin-bottom: 0;
+}
+
+
+

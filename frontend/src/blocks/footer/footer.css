@@ -1,0 +1,7 @@
+.footer {
+  margin: 0;
+  padding: 0;
+  grid-area: footer;
+  grid-row: 3/4;
+  grid-column: 2/3;
+}

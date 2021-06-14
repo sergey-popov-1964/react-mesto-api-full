@@ -1,0 +1,12 @@
+.content {
+  grid-area: main;
+  padding: 40px 0 66px;
+  display: grid;
+  grid-template: repeat(2, max-content) / 1fr;
+}
+
+@media screen and (max-width: 618px) {
+  .content {
+    padding: 42px 0 48px;
+  }
+}

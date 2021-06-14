@@ -1,0 +1,11 @@
+.form__input_type_error {
+  border-bottom-color: #FF0000;
+}
+
+.form__input_type_last {
+  margin-bottom: 50px;
+}
+
+.form__input_type_first {
+  margin-top: 10px;
+}

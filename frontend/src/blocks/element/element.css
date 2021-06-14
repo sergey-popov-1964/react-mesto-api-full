@@ -1,0 +1,6 @@
+.element {
+  text-decoration: none;
+  display: grid;
+  grid-template: 282px max-content/ minmax(282px, 1fr);
+}
+

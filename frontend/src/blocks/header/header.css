@@ -1,0 +1,13 @@
+.header {
+  display: grid;
+  grid-template: auto / 1fr 1fr;
+  margin: 0;
+  padding: 0 0 41px;
+  border-bottom: solid 1px rgba(84, 84, 84, .7);
+}
+
+@media screen and (max-width: 618px) {
+  .header {
+    padding: 0 0 32px;
+  }
+}

@@ -1,0 +1,7 @@
+.element__info {
+  display: grid;
+  grid-template: auto / 1fr min-content;
+  padding: 23px 15px 15px 21px;
+  background: #FFFFFF;
+  border-radius: 0px 0px 10px 10px;
+}

@@ -1,0 +1,40 @@
+.profile__button-add {
+  background-image: url('../../../images/mesto_plus.svg');
+  background-position: center;
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: solid 1px #ffffff;
+  border-radius: 2px;
+  font-family: inherit;
+  width: 150px;
+  height: 50px;
+  background-color: #000000;
+  align-self: center;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+.profile__button-add:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 918px) {
+  .profile__button-add {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    justify-self: start;
+  }
+}
+
+@media screen and (max-width: 618px) {
+  .profile__button-add {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    justify-self: center;
+    width: 100%;
+    background-size: 16px 16px;
+  }
+}

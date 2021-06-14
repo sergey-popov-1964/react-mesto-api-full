@@ -1,0 +1,33 @@
+.zoom-img__close {
+  position: absolute;
+  background: url('../../../images/close_icon.svg') no-repeat center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  top: -40px;
+  right: -40px;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  cursor: pointer;
+  transform: rotate(45deg);
+}
+
+.zoom-img__close:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 618px) {
+  .zoom-img__close {
+    background: url('../../../images/close_icon_mini.svg') no-repeat center;
+    width: 26px;
+    height: 26px;
+    top: -45px;
+    right: 0;
+    transform: rotate(45deg);
+  }
+
+
+}
