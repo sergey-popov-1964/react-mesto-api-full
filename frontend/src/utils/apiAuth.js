@@ -48,6 +48,7 @@ class ApiAuth {
 
 }
 
-const baseUrl = 'https://auth.nomoreparties.co';
+const baseUrl = 'http://localhost:3000';
 const apiAuth = new ApiAuth(baseUrl);
+console.log(baseUrl)
 export default apiAuth;

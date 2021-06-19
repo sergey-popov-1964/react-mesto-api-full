@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -12,6 +13,19 @@ const routes = require('./routes/index');
 const app = express();
 
 app.use(helmet());
+
+
+app.use(
+  cors({
+    "origin": "*",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    allowedHeaders: ["Content-Type", "origin", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.json());
 app.post('/signin', login);
 app.post('/signup', createUser);
