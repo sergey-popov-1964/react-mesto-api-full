@@ -48,7 +48,7 @@ class ApiAuth {
 
 }
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
 const apiAuth = new ApiAuth(baseUrl);
 console.log(baseUrl)
 export default apiAuth;

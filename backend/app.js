@@ -17,7 +17,13 @@ app.use(helmet());
 
 app.use(
   cors({
-    "origin": "*",
+    origin: [
+      "http://localhost:3000",
+      "http://sergeykms.students.nomoredomains.club",
+      "http://back.sergeykms.students.nomoredomains.club",
+      "https://sergeykms.students.nomoredomains.club",
+      "https://back.sergeykms.students.nomoredomains.club",
+    ],
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     preflightContinue: false,
     optionsSuccessStatus: 204,

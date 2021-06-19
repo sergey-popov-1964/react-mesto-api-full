@@ -11,8 +11,6 @@ import Spinner from "./Spinner";
 
 function App() {
 
-  console.log(1212121212121)
-
   const history = useHistory();
   const [isLoggedIn, setLoggedIn] = useState(false)
   const [loginEmail, setLoginEmail] = useState('')

@@ -14,7 +14,7 @@ class Api {
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      // headers: this.baseHeaders,
+      credentials: 'include',
     })
       .then(this.handleResponse);
   }
@@ -22,7 +22,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      // headers: this.baseHeaders,
+      credentials: 'include',
     })
       .then(this.handleResponse);
   }
@@ -80,8 +80,8 @@ class Api {
 
 }
 
-const baseHeaders = {authorization: 'be1a7eff-1608-42e4-ab79-a96e12a8c4b6', 'Content-Type': 'application/json'};
-const baseUrl = 'http://localhost:3000';
+// const baseHeaders = {authorization: 'be1a7eff-1608-42e4-ab79-a96e12a8c4b6', 'Content-Type': 'application/json'};
+const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
 const api = new Api(baseUrl);
 
 export default api;
