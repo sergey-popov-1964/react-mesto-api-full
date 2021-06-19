@@ -1,7 +1,7 @@
 class Api {
-  constructor(baseUrl) {
+  constructor(baseUrl, dataAuth) {
     this._baseUrl = baseUrl;
-    // this.baseHeaders = baseHeaders;
+    this.dataAuth = dataAuth;
   }
 
   handleResponse = (res) => {
@@ -15,6 +15,10 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
       credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.dataAuth}`
+      },
     })
       .then(this.handleResponse);
   }
@@ -23,6 +27,10 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.dataAuth}`
+      },
     })
       .then(this.handleResponse);
   }
@@ -30,7 +38,11 @@ class Api {
   setUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      // headers: this.baseHeaders,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.dataAuth}`
+      },
       body: JSON.stringify(data)
     })
       .then(this.handleResponse);
@@ -39,7 +51,11 @@ class Api {
   setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      // headers: this.baseHeaders,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.dataAuth}`
+      },
       body: JSON.stringify(data)
     })
       .then(this.handleResponse);
@@ -48,7 +64,11 @@ class Api {
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      // headers: this.baseHeaders,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.dataAuth}`
+      },
       body: JSON.stringify(data)
     })
       .then(this.handleResponse);
@@ -57,7 +77,11 @@ class Api {
   deleteCards(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      // headers: this.baseHeaders,
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.dataAuth}`
+      },
     })
       .then(this.handleResponse);
   }
@@ -66,13 +90,21 @@ class Api {
     if (isLike) {
       return fetch(`${this._baseUrl}/cards/likes/${id}`, {
         method: 'PUT',
-        // headers: this.baseHeaders,
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.dataAuth}`
+        },
       })
         .then(this.handleResponse);
     } else {
       return fetch(`${this._baseUrl}/cards/likes/${id}`, {
         method: 'DELETE',
-        // headers: this.baseHeaders,
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this.dataAuth}`
+        },
       })
         .then(this.handleResponse);
     }
@@ -80,8 +112,7 @@ class Api {
 
 }
 
-// const baseHeaders = {authorization: 'be1a7eff-1608-42e4-ab79-a96e12a8c4b6', 'Content-Type': 'application/json'};
+const dataAuth = localStorage.getItem('token');
 const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
-const api = new Api(baseUrl);
-
+const api = new Api(baseUrl, dataAuth);
 export default api;

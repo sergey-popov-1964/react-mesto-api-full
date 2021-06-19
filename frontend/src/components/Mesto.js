@@ -14,6 +14,8 @@ function Mesto(props) {
   const [currentUser, setCurrentUser] = useState({});
 
   const [cards, setCards] = useState([]);
+  const [isReadyData, setIsReadyData] = useState(false);
+
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -29,10 +31,10 @@ function Mesto(props) {
     props.onHandler(props.email, '', 'Выйти');
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(data => {
-        console.log("Получение данных", data)
         const [userInfo, cards] = data;
-        setCurrentUser(userInfo);
-        setCards(cards);
+        setCurrentUser(userInfo.data);
+        setCards(cards.data);
+        setIsReadyData(true);
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
   }, []);
@@ -113,40 +115,45 @@ function Mesto(props) {
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
   }
 
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <Main onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditAvatar={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            cards={cards}
-            onCardLike={handleCardLike}
-            onCardDelete={handleDeleteCardClick}/>
-      <Footer/>
+  if(!isReadyData) {
+    return null;
+  } else {
 
-      <EditProfilePopup isOpen={isEditProfilePopupOpen}
-                        onClose={closeAllPopups}
-                        onUpdateUser={handleUpdateUser}/>
+    return (
+      <CurrentUserContext.Provider value={currentUser}>
+        <Main onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              cards={cards}
+              onCardLike={handleCardLike}
+              onCardDelete={handleDeleteCardClick}/>
+        <Footer/>
 
-      <AddPlacePopup isOpen={isAddPlacePopupOpen}
-                     onClose={closeAllPopups}
-                     onAddCard={handleAddPlaceSubmit}/>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen}
+                          onClose={closeAllPopups}
+                          onUpdateUser={handleUpdateUser}/>
 
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen}
+        <AddPlacePopup isOpen={isAddPlacePopupOpen}
                        onClose={closeAllPopups}
-                       onUpdateAvatar={handleUpdateAvatar}/>
+                       onAddCard={handleAddPlaceSubmit}/>
 
-      <DeletePopup isOpen={isDeletePopup}
-                   onClose={closeAllPopups}
-                   onDeleteCard={handleCardDelete}
-                   cardID={selectedCardToDelete}
-      />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen}
+                         onClose={closeAllPopups}
+                         onUpdateAvatar={handleUpdateAvatar}/>
 
-      <ImagePopup card={selectedCard}
-                  onClose={closeAllPopups}/>
+        <DeletePopup isOpen={isDeletePopup}
+                     onClose={closeAllPopups}
+                     onDeleteCard={handleCardDelete}
+                     cardID={selectedCardToDelete}
+        />
 
-    </CurrentUserContext.Provider>
-  );
+        <ImagePopup card={selectedCard}
+                    onClose={closeAllPopups}/>
+
+      </CurrentUserContext.Provider>
+    );
+  }
 }
 
 export default Mesto;

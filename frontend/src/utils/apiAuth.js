@@ -50,5 +50,4 @@ class ApiAuth {
 
 const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
 const apiAuth = new ApiAuth(baseUrl);
-console.log(baseUrl)
 export default apiAuth;
