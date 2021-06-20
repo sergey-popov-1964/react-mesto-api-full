@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const User = require('../models/users');
 
 const getAllUsers = (req, res, next) => User.find({})
@@ -100,7 +101,8 @@ const login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({_id: user._id}, 'some-secret-key', {expiresIn: '7d'});
+      const jwtKey = 'some-secret-key'
+      const token = jwt.sign({_id: user._id}, jwtKey, {expiresIn: '7d'});
       res.send({ token });
     })
     .catch((e) => {
