@@ -31,7 +31,6 @@ function Mesto(props) {
     props.onHandler(props.email, '', 'Выйти');
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(data => {
-        console.log(data)
         const [userInfo, cards] = data;
         setCurrentUser(userInfo.data);
         setCards(cards.data);

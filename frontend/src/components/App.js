@@ -8,6 +8,7 @@ import apiAuth from "../utils/apiAuth";
 import InfoTooltip from "./InfoTooltip";
 import Header from "./Header";
 import Spinner from "./Spinner";
+import api from "../utils/api";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
         setLoginEmail(res.data.email)
         setLoggedIn(true);
         setReadyResponse(true)
+        api.currentToken = jwt;
         history.push('/mesto');
       })
       .catch((error) => {
@@ -56,6 +58,7 @@ function App() {
   function onSignOut() {
     setLoggedIn(false);
     localStorage.removeItem('token');
+    api.currentToken = '';
     history.push('/signin');
   }
 
@@ -81,6 +84,7 @@ function App() {
         localStorage.setItem('token', res.token);
         setLoginEmail(data.email);
         setLoggedIn(true);
+        api.currentToken = res.token;
         history.push('/mesto');
       })
       .catch((error) => {

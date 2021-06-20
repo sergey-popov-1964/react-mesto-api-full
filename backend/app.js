@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const {createUser, login} = require('./controllers/users');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const {PORT = 3000} = process.env;
 const routes = require('./routes/index');
@@ -33,6 +34,9 @@ app.use(
 );
 
 app.use(bodyParser.json());
+
+app.use(requestLogger);
+
 app.post('/signin', login);
 app.post('/signup', createUser);
 
@@ -42,6 +46,8 @@ app.use(routes);
 routes.use((req, res) => {
   res.status(404).send({message: 'Запрашиваемый ресурс не найден'});
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 app.use((err, req, res, next) => {

@@ -1,7 +1,12 @@
 class Api {
-  constructor(baseUrl, dataAuth) {
+  constructor(baseUrl) {
     this._baseUrl = baseUrl;
-    this.dataAuth = dataAuth;
+  }
+
+  #currentToken = '';
+
+  set currentToken(value) {
+    this.#currentToken = value;
   }
 
   handleResponse = (res) => {
@@ -17,7 +22,7 @@ class Api {
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.dataAuth}`
+        "Authorization": `Bearer ${this.#currentToken}`
       },
     })
       .then(this.handleResponse);
@@ -29,19 +34,20 @@ class Api {
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.dataAuth}`
+        "Authorization": `Bearer ${this.#currentToken}`
       },
     })
       .then(this.handleResponse);
   }
 
   setUserInfo(data) {
+    console.log(this.#currentToken)
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.dataAuth}`
+        "Authorization": `Bearer ${this.#currentToken}`
       },
       body: JSON.stringify(data)
     })
@@ -54,7 +60,7 @@ class Api {
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.dataAuth}`
+        "Authorization": `Bearer ${this.#currentToken}`
       },
       body: JSON.stringify(data)
     })
@@ -67,7 +73,7 @@ class Api {
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.dataAuth}`
+        "Authorization": `Bearer ${this.#currentToken}`
       },
       body: JSON.stringify(data)
     })
@@ -80,7 +86,7 @@ class Api {
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.dataAuth}`
+        "Authorization": `Bearer ${this.#currentToken}`
       },
     })
       .then(this.handleResponse);
@@ -93,7 +99,7 @@ class Api {
         credentials: 'include',
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.dataAuth}`
+          "Authorization": `Bearer ${this.#currentToken}`
         },
       })
         .then(this.handleResponse);
@@ -103,7 +109,7 @@ class Api {
         credentials: 'include',
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.dataAuth}`
+          "Authorization": `Bearer ${this.#currentToken}`
         },
       })
         .then(this.handleResponse);
@@ -112,7 +118,6 @@ class Api {
 
 }
 
-const dataAuth = localStorage.getItem('token');
 const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
-const api = new Api(baseUrl, dataAuth);
+const api = new Api(baseUrl);
 export default api;
