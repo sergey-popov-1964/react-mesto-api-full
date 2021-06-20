@@ -31,6 +31,7 @@ function Mesto(props) {
     props.onHandler(props.email, '', 'Выйти');
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(data => {
+        console.log(data)
         const [userInfo, cards] = data;
         setCurrentUser(userInfo.data);
         setCards(cards.data);
@@ -40,10 +41,10 @@ function Mesto(props) {
   }, []);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCards((state) => state.map((c) => c._id === card._id ? newCard.data : c));
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
   }
@@ -91,7 +92,7 @@ function Mesto(props) {
   function handleUpdateUser(data) {
     api.setUserInfo(data)
       .then(response => {
-        setCurrentUser(response);
+        setCurrentUser(response.data);
         closeAllPopups()
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
@@ -100,7 +101,7 @@ function Mesto(props) {
   function handleUpdateAvatar(data) {
     api.setUserAvatar(data)
       .then(response => {
-        setCurrentUser(response);
+        setCurrentUser(response.data);
         closeAllPopups()
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));
@@ -109,7 +110,7 @@ function Mesto(props) {
   function handleAddPlaceSubmit(data) {
     api.addCard(data)
       .then(response => {
-        setCards([response, ...cards]);
+        setCards([response.data, ...cards]);
         closeAllPopups()
       })
       .catch((error) => console.log("Ошибка загрузки данных с сервера", error));

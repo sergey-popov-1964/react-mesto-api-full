@@ -88,7 +88,7 @@ class Api {
 
   changeLikeCardStatus(id, isLike) {
     if (isLike) {
-      return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -98,7 +98,7 @@ class Api {
       })
         .then(this.handleResponse);
     } else {
-      return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
