@@ -22,6 +22,8 @@ app.use(
       "http://localhost:3000",
       "http://sergeykms.students.nomoredomains.club",
       "http://back.sergeykms.students.nomoredomains.club",
+      "http://back.sergeykms.students.nomoredomains.club/signin",
+      "http://back.sergeykms.students.nomoredomains.club/sigup",
       "https://sergeykms.students.nomoredomains.club",
       "https://back.sergeykms.students.nomoredomains.club",
     ],
