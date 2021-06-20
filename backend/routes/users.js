@@ -1,6 +1,8 @@
 const routesUser = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
 
+routesUser.use(requestLogger);
 
 const {
   getAllUsers, getUserById, updateProfile, updateAvatar, getCurrentUser,
@@ -45,5 +47,8 @@ routesUser.get('/users/:userId', celebrate({
     authorization: Joi.string().required(),
   }).unknown(true),
 }), getUserById);
+
+
+routesUser.use(errorLogger);
 
 module.exports = routesUser;

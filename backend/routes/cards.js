@@ -1,6 +1,8 @@
 const routesCard = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
 
+routesCard.use(requestLogger);
 
 const {
   createCard, getAllCards, deleteCard, likeCard, dislikeCard,
@@ -36,5 +38,7 @@ routesCard.delete('/cards/:cardId/likes', celebrate({
     cardId: Joi.string().alphanum().length(24),
   }),
 }), dislikeCard);
+
+routesCard.use(errorLogger);
 
 module.exports = routesCard;

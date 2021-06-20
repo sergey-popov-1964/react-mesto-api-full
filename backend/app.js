@@ -22,8 +22,6 @@ app.use(
       "http://localhost:3000",
       "http://sergeykms.students.nomoredomains.club",
       "http://back.sergeykms.students.nomoredomains.club",
-      "http://back.sergeykms.students.nomoredomains.club/signin",
-      "http://back.sergeykms.students.nomoredomains.club/sigup",
       "https://sergeykms.students.nomoredomains.club",
       "https://back.sergeykms.students.nomoredomains.club",
     ],
@@ -37,7 +35,7 @@ app.use(
 
 app.use(bodyParser.json());
 
-// app.use(requestLogger);
+app.use(requestLogger);
 
 app.post('/signin', login);
 app.post('/signup', createUser);
@@ -49,7 +47,7 @@ routes.use((req, res) => {
   res.status(404).send({message: 'Запрашиваемый ресурс не найден'});
 });
 
-// app.use(errorLogger);
+app.use(errorLogger);
 
 app.use(errors());
 app.use((err, req, res, next) => {
