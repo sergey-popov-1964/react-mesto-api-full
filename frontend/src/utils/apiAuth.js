@@ -48,6 +48,6 @@ class ApiAuth {
 
 }
 
-const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
+const baseUrl = 'https://back.sergeykms.students.nomoredomains.club';
 const apiAuth = new ApiAuth(baseUrl);
 export default apiAuth;

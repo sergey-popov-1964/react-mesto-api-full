@@ -118,6 +118,6 @@ class Api {
 
 }
 
-const baseUrl = 'http://back.sergeykms.students.nomoredomains.club';
+const baseUrl = 'https://back.sergeykms.students.nomoredomains.club';
 const api = new Api(baseUrl);
 export default api;
