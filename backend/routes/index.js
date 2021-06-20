@@ -1,9 +1,9 @@
 const routes = require('express').Router();
 const routesUser = require('./users');
 const routesCards = require('./cards');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
 
-app.use(requestLogger);
+routes.use(requestLogger);
 
 routes.use('/', routesUser);
 routes.use('/', routesCards);
