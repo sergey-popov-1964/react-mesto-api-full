@@ -37,7 +37,7 @@ app.use(
 
 app.use(bodyParser.json());
 
-app.use(requestLogger);
+// app.use(requestLogger);
 
 app.post('/signin', login);
 app.post('/signup', createUser);
@@ -49,7 +49,7 @@ routes.use((req, res) => {
   res.status(404).send({message: 'Запрашиваемый ресурс не найден'});
 });
 
-app.use(errorLogger);
+// app.use(errorLogger);
 
 app.use(errors());
 app.use((err, req, res, next) => {
