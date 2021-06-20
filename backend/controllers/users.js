@@ -97,11 +97,12 @@ const updateAvatar = (req, res, next) => {
 };
 
 const login = (req, res, next) => {
+  const { NODE_ENV, JWT_SECRET } = process.env;
   const {email, password} = req.body;
-
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const jwtKey = 'some-secret-key'
+      let jwtKey = '';
+      NODE_ENV === 'production' ? jwtKey = JWT_SECRET : jwtKey = 'some-secret-key';
       const token = jwt.sign({_id: user._id}, jwtKey, {expiresIn: '7d'});
       res.send({ token });
     })
