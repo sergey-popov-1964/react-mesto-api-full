@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const { celebrate, Joi } = require('celebrate');
 const auth = require('./middlewares/auth');
 const {createUser, login} = require('./controllers/users');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -14,7 +15,6 @@ const routes = require('./routes/index');
 const app = express();
 
 app.use(helmet());
-
 
 app.use(
   cors({
@@ -47,20 +47,34 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+    password: Joi.string().required().min(6).required().max(30),
+  }).unknown(true),
+}), login);
 
-app.post('/signin', login);
-app.post('/signup', createUser);
+app.post('/signup', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
+    password: Joi.string().required().min(6).required().max(30),
+  }).unknown(true),
+}), createUser);
 
 app.use(auth);
 app.use(routes);
 
-routes.use((req, res) => {
-  res.status(404).send({message: 'Запрашиваемый ресурс не найден'});
+
+routes.use((req, res, next) => {
+  const err = new Error('Запрашиваемый ресурс не найден');
+  err.statusCode = 404;
+  next(err);
 });
 
 app.use(errorLogger);
 
 app.use(errors());
+
 app.use((err, req, res, next) => {
   const {statusCode = 500, message} = err;
   res.status(statusCode)

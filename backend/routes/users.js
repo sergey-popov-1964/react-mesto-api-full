@@ -41,7 +41,7 @@ routesUser.patch('/users/me/avatar', celebrate({
 
 routesUser.get('/users/:userId', celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().alphanum().length(24),
+    userId: Joi.string().hex().length(24),
   }).unknown(true),
   headers: Joi.object({
     authorization: Joi.string().required(),
