@@ -48,7 +48,6 @@ routesUser.get('/users/:userId', celebrate({
   }).unknown(true),
 }), getUserById);
 
-
 routesUser.use(errorLogger);
 
 module.exports = routesUser;

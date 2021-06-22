@@ -18,7 +18,7 @@ const createUser = (req, res, next) => {
     }))
     .then((user) => {
       const { password, ...publicUser } = user.toObject();
-      res.status(200).send({data: publicUser})
+      res.status(200).send({data: publicUser});
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

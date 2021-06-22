@@ -3,7 +3,7 @@ require('dotenv').config();
 
 module.exports = (req, res, next) => {
   const { NODE_ENV, JWT_SECRET } = process.env;
-    const {authorization} = req.headers;
+  const {authorization} = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
     const err = new Error('Необходима авторизация1');
     err.statusCode = 401;

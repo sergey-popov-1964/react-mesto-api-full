@@ -20,5 +20,6 @@ module.exports = {
     'consistent-return': 'off',
     'func-names': 'off',
     'arrow-body-style': 'off',
+    'no-unused-expressions': 'off',
   },
 };

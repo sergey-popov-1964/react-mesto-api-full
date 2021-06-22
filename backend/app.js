@@ -19,22 +19,22 @@ app.use(helmet());
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "http://sergeykms.students.nomoredomains.club",
-      "https://sergeykms.students.nomoredomains.club",
-      "http://back.sergeykms.students.nomoredomains.club",
-      "http://back.sergeykms.students.nomoredomains.club/signin",
-      "http://back.sergeykms.students.nomoredomains.club/signup",
-      "https://back.sergeykms.students.nomoredomains.club",
-      "https://back.sergeykms.students.nomoredomains.club/signin",
-      "https://back.sergeykms.students.nomoredomains.club/signup",
+      'http://localhost:3000',
+      'http://sergeykms.students.nomoredomains.club',
+      'https://sergeykms.students.nomoredomains.club',
+      'http://back.sergeykms.students.nomoredomains.club',
+      'http://back.sergeykms.students.nomoredomains.club/signin',
+      'http://back.sergeykms.students.nomoredomains.club/signup',
+      'https://back.sergeykms.students.nomoredomains.club',
+      'https://back.sergeykms.students.nomoredomains.club/signin',
+      'https://back.sergeykms.students.nomoredomains.club/signup',
     ],
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     preflightContinue: false,
     optionsSuccessStatus: 204,
-    allowedHeaders: ["Content-Type", "origin", "Authorization"],
+    allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
     credentials: true,
-  })
+  }),
 );
 
 app.use(bodyParser.json());
@@ -50,20 +50,21 @@ app.get('/crash-test', () => {
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
-    password: Joi.string().required().min(6).required().max(30),
+    password: Joi.string().required().min(6).required()
+      .max(30),
   }).unknown(true),
 }), login);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
-    password: Joi.string().required().min(6).required().max(30),
+    password: Joi.string().required().min(6).required()
+      .max(30),
   }).unknown(true),
 }), createUser);
 
 app.use(auth);
 app.use(routes);
-
 
 routes.use((req, res, next) => {
   const err = new Error('Запрашиваемый ресурс не найден');
